@@ -1,33 +1,330 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang=en>
 <head>
-<meta charset="utf-8">
-<title>Netty从入门到瞎搞 - ECIN&#39;S BLOG</title>
-<base href="/">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<meta name="description" content="简介Netty是一个NIO客户端服务器框架，可以快速轻松地开发网络应用程序，例如协议服务器和客户端。它极大地简化和简化了TCP和UDP套接字服务器等网络编程。“快速简便”并不意味着最终的应用程序将遭受可维护性或性能问题的困扰。Netty经过精心设计，结合了许多协议（例如FTP，SMTP，HTTP以及各种基于二进制和文本的旧式协议）的实施经验。结果，Netty成功地找到了一种无需妥协即可轻松实现开发">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="简介Netty是一个NIO客户端服务器框架，可以快速轻松地开发网络应用程序，例如协议服务器和客户端。它极大地简化和简化了TCP和UDP套接字服务器等网络编程。“快速简便”并不意味着最终的应用程序将遭受可维护性或性能问题的困扰。Netty经过精心设计，结合了许多协议（例如FTP，SMTP，HTTP以及各种基于二进制和文本的旧式协议）的实施经验。结果，Netty成功地找到了一种无需妥协即可轻松实现开发">
 <meta name="keywords" content="Java,Netty">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Netty从入门到瞎搞">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E&#x2F;index.html">
 <meta property="og:site_name" content="ECIN&#39;S BLOG">
 <meta property="og:description" content="简介Netty是一个NIO客户端服务器框架，可以快速轻松地开发网络应用程序，例如协议服务器和客户端。它极大地简化和简化了TCP和UDP套接字服务器等网络编程。“快速简便”并不意味着最终的应用程序将遭受可维护性或性能问题的困扰。Netty经过精心设计，结合了许多协议（例如FTP，SMTP，HTTP以及各种基于二进制和文本的旧式协议）的实施经验。结果，Netty成功地找到了一种无需妥协即可轻松实现开发">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http:&#x2F;&#x2F;148.70.50.70&#x2F;source&#x2F;1572837893695.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;148.70.50.70&#x2F;source&#x2F;1574123012802.jpg">
+<meta property="og:image" content="http:&#x2F;&#x2F;148.70.50.70&#x2F;source&#x2F;1574126235877.jpg">
 <meta property="og:updated_time" content="2020-01-18T06:55:38.268Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;148.70.50.70&#x2F;source&#x2F;1572837893695.jpg">
-<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
-<link href="/styles.d1f4718a192abf1f2afd.css" rel="stylesheet">
-<link rel="stylesheet" href="/theme.15ed8a84bc5b1648ee02.css">
-<script src="/config.ef6b22af410138abcfaf.js"></script>
+<meta name="twitter:image" content="http:&#x2F;&#x2F;148.70.50.70&#x2F;source&#x2F;1574123012802.jpg">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>Netty从入门到瞎搞</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
 </head>
-<body lang="en">
-<is-a></is-a>
-<script src="/runtime.caef73fae70e33459c5a.js"></script>
-<script src="/polyfills.28555e618578fe61f50a.js"></script>
-<script src="/main.a6ef31dc523c76e5118c.js"></script>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/11/26/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E4%B9%8BSpringCloud/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/11/17/SpringBoot-Zookeeper-Dubbo%E7%AE%80%E5%8D%95%E6%90%AD%E5%BB%BA%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&text=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&is_video=false&description=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Netty从入门到瞎搞&body=Check out this article: http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/" target="_blank" rel="noopener"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&name=Netty从入门到瞎搞&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&t=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#应用"><span class="toc-number">2.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在了解Netty之前，需要对一些概念有所了解"><span class="toc-number"></span> <span class="toc-text">在了解Netty之前，需要对一些概念有所了解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Selector"><span class="toc-number">1.</span> <span class="toc-text">Selector</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Buffer"><span class="toc-number">2.</span> <span class="toc-text">Buffer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reactor"><span class="toc-number">3.</span> <span class="toc-text">Reactor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Handler"><span class="toc-number">4.</span> <span class="toc-text">Handler</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Netty入门"><span class="toc-number"></span> <span class="toc-text">Netty入门</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Bootstrap-ServerBootstrap"><span class="toc-number">0.1.</span> <span class="toc-text">Bootstrap ServerBootstrap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Future-ChannelFuture"><span class="toc-number">0.2.</span> <span class="toc-text">Future ChannelFuture</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Channel"><span class="toc-number">0.3.</span> <span class="toc-text">Channel</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Selector-1"><span class="toc-number">0.4.</span> <span class="toc-text">Selector</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NioEventLoop"><span class="toc-number">0.5.</span> <span class="toc-text">NioEventLoop</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NioEventLoopGroup"><span class="toc-number">0.6.</span> <span class="toc-text">NioEventLoopGroup</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ChannelHandler"><span class="toc-number">0.7.</span> <span class="toc-text">ChannelHandler</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ChannelHandlerContext"><span class="toc-number">0.8.</span> <span class="toc-text">ChannelHandlerContext</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ChannelPipline"><span class="toc-number">0.9.</span> <span class="toc-text">ChannelPipline</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#入门实战"><span class="toc-number">1.</span> <span class="toc-text">入门实战</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Server类"><span class="toc-number">1.0.1.</span> <span class="toc-text">Server类</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ServerInit类"><span class="toc-number">1.0.2.</span> <span class="toc-text">ServerInit类</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#CustomHandler类"><span class="toc-number">1.0.3.</span> <span class="toc-text">CustomHandler类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建一个WebSocket服务器"><span class="toc-number">2.</span> <span class="toc-text">创建一个WebSocket服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Main类"><span class="toc-number">2.0.1.</span> <span class="toc-text">Main类</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ChatHandler类"><span class="toc-number">2.0.2.</span> <span class="toc-text">ChatHandler类</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Netty从入门到瞎搞
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ECIN'S BLOG</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-11-19T08:59:04.000Z" itemprop="datePublished">2019-11-19</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/Java/" rel="tag">Java</a>, <a class="tag-link" href="/tags/Netty/" rel="tag">Netty</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>Netty是一个NIO客户端服务器框架，可以快速轻松地开发网络应用程序，例如协议服务器和客户端。它极大地简化和简化了TCP和UDP套接字服务器等网络编程。<br>“快速简便”并不意味着最终的应用程序将遭受可维护性或性能问题的困扰。Netty经过精心设计，结合了许多协议（例如FTP，SMTP，HTTP以及各种基于二进制和文本的旧式协议）的实施经验。结果，Netty成功地找到了一种无需妥协即可轻松实现开发，性能，稳定性和灵活性的方法。</p>
+<p><img src="http://148.70.50.70/source/1574123012802.jpg" alt="image.png"></p>
+<ul>
+<li>设计<br>适用于各种传输类型的统一API-阻塞和非阻塞套接字<br>基于灵活且可扩展的事件模型，可将关注点明确分离<br>高度可定制的线程模型-单线程，一个或多个线程池，例如SEDA<br>真正的无连接数据报套接字支持（从3.1开始）</li>
+<li>使用方便<br>记录良好的Javadoc，用户指南和示例<br>没有其他依赖关系，JDK 5（Netty 3.x）或6（Netty 4.x）就足够了<br>注意：某些组件（例如HTTP / 2）可能有更多要求。请参阅 需求页面 以获取更多信息。</li>
+<li>性能<br>更高的吞吐量，更低的延迟<br>减少资源消耗<br>减少不必要的内存复制-零拷贝</li>
+<li>安全<br>完整的SSL / TLS和StartTLS支持</li>
+<li>社区<br>提前发布，经常发布<br>自2003年以来，作者一直在编写类似的框架，但他仍然发现您的反馈很宝贵！<br>由于原生JDK自带的api使用起来开发十分麻烦，且门槛较高，Netty应运而生。<h4 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h4></li>
+<li>分布式系统，Dubbo框架使用的RPC底层应用的就是Netty</li>
+<li>高性能游戏服务器开发</li>
+<li>大数据</li>
+</ul>
+<h3 id="在了解Netty之前，需要对一些概念有所了解"><a href="#在了解Netty之前，需要对一些概念有所了解" class="headerlink" title="在了解Netty之前，需要对一些概念有所了解"></a>在了解Netty之前，需要对一些概念有所了解</h3><h4 id="Selector"><a href="#Selector" class="headerlink" title="Selector"></a>Selector</h4><p>传统的阻塞IO中，每个请求都需要独立的线程完成数据 Read，业务处理，数据 Write 的完整操作问题。当并发数较大时，需要创建大量线程来处理连接，系统资源占用较大。连接建立后，如果当前线程暂时没有数据可读，则线程就阻塞在 Read 操作上，造成线程资源浪费。</p>
+<p>Netty 的 IO 线程 NioEventLoop 由于聚合了多路复用器 Selector，可以同时并发处理成百上千个客户端连接。当线程从某客户端 Socket 通道进行读写数据时，若没有数据可用时，该线程可以进行其他任务。线程通常将非阻塞 IO 的空闲时间用于在其他通道上执行 IO 操作，所以单独的线程可以管理多个输入和输出通道。由于读写操作都是非阻塞的，这就可以充分提升 IO 线程的运行效率，避免由于频繁 I/O 阻塞导致的线程挂起。一个 I/O 线程可以并发处理 N 个客户端连接和读写操作，这从根本上解决了传统同步阻塞 I/O 一连接一线程模型，架构的性能、弹性伸缩能力和可靠性都得到了极大的提升。</p>
+<h4 id="Buffer"><a href="#Buffer" class="headerlink" title="Buffer"></a>Buffer</h4><p>传统的 I/O 是面向字节流或字符流的，以流式的方式顺序地从一个 Stream 中读取一个或多个字节, 因此也就不能随意改变读取指针的位置。在NIO中，抛弃了传统的IO流，而是引入了Channel 和 Buffer的概念。在NIO中，只能从Channel中读取数据到Buffer中或将数据从Buffer中写入到Channel。</p>
+<h4 id="Reactor"><a href="#Reactor" class="headerlink" title="Reactor"></a>Reactor</h4><p>Reactor模型是指通过一个或多个输入同时传递给服务处理器的服务请求的事件驱动处理模式。服务端程序处理传入多路请求，并将它们同步分派给请求对应的处理线程，Reactor 模式也叫Dispatcher模式，即 I/O 多了复用统一监听事件，收到事件后分发(Dispatch 给某进程)Reactor。<br>线程模型分为</p>
+<ul>
+<li>单线程模型</li>
+<li>多线程模型</li>
+<li>主从线程模型</li>
+</ul>
+<p>Netty线程模型基于主从线程模型</p>
+<ul>
+<li><p>MainReactor 负责客户端的连接请求，并将请求转交给 SubReactor；</p>
+</li>
+<li><p>SubReactor 负责相应通道的 IO 读写请求；</p>
+</li>
+<li><p>非 IO 请求（具体逻辑处理）的任务则会直接写入队列，等待 worker threads 进行处理。</p>
+</li>
+</ul>
+<h4 id="Handler"><a href="#Handler" class="headerlink" title="Handler"></a>Handler</h4><p>处理程序执行IO事件要完成的实际事件，Reactor 通过调度适当的处理程序来响应IO事件，处理程序执行非阻塞操作。</p>
+<h3 id="Netty入门"><a href="#Netty入门" class="headerlink" title="Netty入门"></a>Netty入门</h3><h5 id="Bootstrap-ServerBootstrap"><a href="#Bootstrap-ServerBootstrap" class="headerlink" title="Bootstrap ServerBootstrap"></a>Bootstrap ServerBootstrap</h5><p>Bootstrap 意思是引导，一个 Netty 应用通常由一个 Bootstrap 开始，主要作用是配置整个 Netty 程序，串联各个组件，Netty 中 Bootstrap 类是客户端程序的启动引导类，ServerBootstrap 是服务端启动引导类。</p>
+<h5 id="Future-ChannelFuture"><a href="#Future-ChannelFuture" class="headerlink" title="Future ChannelFuture"></a>Future ChannelFuture</h5><p>Netty中所有的IO操作都是异步的，不能立刻得知消息是否被正确处理。但是可以过一会等它执行完成或者直接注册一个监听，具体的实现就是通过 Future 和 ChannelFutures，他们可以注册一个监听，当操作执行成功或失败时监听会自动触发注册的监听事件。</p>
+<h5 id="Channel"><a href="#Channel" class="headerlink" title="Channel"></a>Channel</h5><p>Netty 网络通信的组件，能够用于执行网络 I/O 操作。Channel 为用户提供：</p>
+<ul>
+<li><p>当前网络连接的通道的状态（例如是否打开？是否已连接？）</p>
+</li>
+<li><p>网络连接的配置参数 （例如接收缓冲区大小）</p>
+</li>
+<li><p>提供异步的网络 I/O 操作(如建立连接，读写，绑定端口)，异步调用意味着任何 I/O 调用都将立即返回，并且不保证在调用结束时所请求的 I/O 操作已完成。</p>
+</li>
+<li><p>调用立即返回一个 ChannelFuture 实例，通过注册监听器到 ChannelFuture 上，可以 I/O 操作成功、失败或取消时回调通知调用方。</p>
+</li>
+<li><p>支持关联 I/O 操作与对应的处理程序。</p>
+<h5 id="Selector-1"><a href="#Selector-1" class="headerlink" title="Selector"></a>Selector</h5></li>
+</ul>
+<p>Netty 基于 Selector 对象实现 I/O 多路复用，通过 Selector 一个线程可以监听多个连接的 Channel 事件。当向一个 Selector 中注册 Channel 后，Selector 内部的机制就可以自动不断地查询(Select) 这些注册的 Channel 是否有已就绪的 I/O 事件（例如可读，可写，网络连接完成等），这样程序就可以很简单地使用一个线程高效地管理多个 Channel 。</p>
+<h5 id="NioEventLoop"><a href="#NioEventLoop" class="headerlink" title="NioEventLoop"></a>NioEventLoop</h5><p>NioEventLoop 中维护了一个线程和任务队列，支持异步提交执行任务，线程启动时会调用NioEventLoop 的 run 方法，执行 I/O 任务和非 I/O 任务：I/O 任务，即 selectionKey 中 ready 的事件，如 accept、connect、read、write 等，由 processSelectedKeys 方法触发。<br>非 IO 任务，添加到 taskQueue 中的任务，如 register0、bind0 等任务，由 runAllTasks 方法触发。</p>
+<p>两种任务的执行时间比由变量 ioRatio 控制，默认为 50，则表示允许非 IO 任务执行的时间与 IO 任务的执行时间相等。</p>
+<h5 id="NioEventLoopGroup"><a href="#NioEventLoopGroup" class="headerlink" title="NioEventLoopGroup"></a>NioEventLoopGroup</h5><p>NioEventLoopGroup，主要管理 eventLoop 的生命周期，可以理解为一个线程池，内部维护了一组线程，每个线程(NioEventLoop)负责处理多个 Channel 上的事件，而一个 Channel 只对应于一个线程。</p>
+<h5 id="ChannelHandler"><a href="#ChannelHandler" class="headerlink" title="ChannelHandler"></a>ChannelHandler</h5><p>ChannelHandler 是一个接口，处理 I/O 事件或拦截 I/O 操作，并将其转发到其 ChannelPipeline(业务处理链)中的下一个处理程序。ChannelHandler 本身并没有提供很多方法，因为这个接口有许多的方法需要实现，方便使用期间，可以继承它的子类：</p>
+<h5 id="ChannelHandlerContext"><a href="#ChannelHandlerContext" class="headerlink" title="ChannelHandlerContext"></a>ChannelHandlerContext</h5><p>保存 Channel 相关的所有上下文信息，同时关联一个 ChannelHandler 对象。</p>
+<h5 id="ChannelPipline"><a href="#ChannelPipline" class="headerlink" title="ChannelPipline"></a>ChannelPipline</h5><p>保存 ChannelHandler 的 List，用于处理或拦截 Channel 的入站事件和出站操作。ChannelPipeline 实现了一种高级形式的拦截过滤器模式，使用户可以完全控制事件的处理方式，以及 Channel 中各个的 ChannelHandler 如何相互交互。</p>
+<h4 id="入门实战"><a href="#入门实战" class="headerlink" title="入门实战"></a>入门实战</h4><h6 id="Server类"><a href="#Server类" class="headerlink" title="Server类"></a>Server类</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io.netty.bootstrap.ServerBootstrap;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.ChannelFuture;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.EventLoopGroup;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.nio.NioEventLoopGroup;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.socket.nio.NioServerSocketChannel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Server</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 定义一堆线程组,用于接收客户端的连接，但是不做任何处理</span></span><br><span class="line">        <span class="comment">// 主线程组</span></span><br><span class="line">        EventLoopGroup mainGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 从线程组,线程组会把任务分配给它</span></span><br><span class="line">        EventLoopGroup workerGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// netty服务器的创建，ServerBootstrap是一个启动类</span></span><br><span class="line">            ServerBootstrap serverBootstrap = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line">            serverBootstrap.group(mainGroup, workerGroup)   <span class="comment">// 设置主线程组</span></span><br><span class="line">                    .channel(NioServerSocketChannel.class)  <span class="comment">// 设置nio的双向通道</span></span><br><span class="line">                    .childHandler(<span class="keyword">new</span> ServerInit());        <span class="comment">// 子处理器</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">// 启动Server并设置8088启动端口，同时启动方式为同步</span></span><br><span class="line">            ChannelFuture channelFuture = serverBootstrap.bind(<span class="number">8084</span>).sync();</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 监听关闭的channel，设置同步方式</span></span><br><span class="line">            channelFuture.channel().closeFuture().sync();</span><br><span class="line"></span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            mainGroup.shutdownGracefully();</span><br><span class="line">            workerGroup.shutdownGracefully();</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="ServerInit类"><a href="#ServerInit类" class="headerlink" title="ServerInit类"></a>ServerInit类</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io.netty.channel.ChannelInitializer;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.ChannelPipeline;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.socket.SocketChannel;</span><br><span class="line"><span class="keyword">import</span> io.netty.handler.codec.http.HttpServerCodec;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 初始化器，channel注册后，会执行里面相应的初始化方法</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ServerInit</span> <span class="keyword">extends</span> <span class="title">ChannelInitializer</span>&lt;<span class="title">SocketChannel</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel socketChannel)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 通过SocketChannel去获得对应的管道</span></span><br><span class="line">        ChannelPipeline pipeline = socketChannel.pipeline();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 通过管道添加handler</span></span><br><span class="line">        <span class="comment">// HttpServerCodec是netty自己提供的助手类，可理解为拦截器</span></span><br><span class="line">        <span class="comment">// 当请求到服务端，我们需要做解码，响应到客户端做编码</span></span><br><span class="line">        pipeline.addLast(<span class="string">"HttpServerCodec"</span>, <span class="keyword">new</span> HttpServerCodec());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 添加自定义的助手类，返回</span></span><br><span class="line">        pipeline.addLast(<span class="string">"CustomHandler"</span>, <span class="keyword">new</span> CustomHandler());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="CustomHandler类"><a href="#CustomHandler类" class="headerlink" title="CustomHandler类"></a>CustomHandler类</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io.netty.buffer.ByteBuf;</span><br><span class="line"><span class="keyword">import</span> io.netty.buffer.Unpooled;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.Channel;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.ChannelHandlerContext;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.SimpleChannelInboundHandler;</span><br><span class="line"><span class="keyword">import</span> io.netty.handler.codec.http.*;</span><br><span class="line"><span class="keyword">import</span> io.netty.util.CharsetUtil;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.nio.ByteBuffer;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建自定义助手类,SimpleChannelInboundHandler相当于"入站"</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CustomHandler</span> <span class="keyword">extends</span> <span class="title">SimpleChannelInboundHandler</span>&lt;<span class="title">HttpObject</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">channelRead0</span><span class="params">(ChannelHandlerContext channelHandlerContext, HttpObject httpObject)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 获取channel</span></span><br><span class="line">        Channel channel = channelHandlerContext.channel();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (httpObject <span class="keyword">instanceof</span> HttpRequest) &#123;</span><br><span class="line">            <span class="comment">// 显示客户端的远程地址</span></span><br><span class="line">            System.out.println(channel.remoteAddress());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 定义发送的数据消息</span></span><br><span class="line">            ByteBuf content = Unpooled.copiedBuffer(<span class="string">"Hello netty"</span>, CharsetUtil.UTF_8);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 构建一个http response</span></span><br><span class="line">            FullHttpResponse response = <span class="keyword">new</span> DefaultFullHttpResponse(HttpVersion.HTTP_1_1,</span><br><span class="line">                    HttpResponseStatus.OK,</span><br><span class="line">                    content);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 为响应增加数据类型和长度</span></span><br><span class="line">            response.headers().set(HttpHeaderNames.CONTENT_TYPE, <span class="string">"text/plain"</span>);</span><br><span class="line">            response.headers().set(HttpHeaderNames.CONTENT_LENGTH, content.readableBytes());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 把响应发到客户端</span></span><br><span class="line">            channelHandlerContext.writeAndFlush(response);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="http://148.70.50.70/source/1574126235877.jpg" alt="image.png"></p>
+<h4 id="创建一个WebSocket服务器"><a href="#创建一个WebSocket服务器" class="headerlink" title="创建一个WebSocket服务器"></a>创建一个WebSocket服务器</h4><h6 id="Main类"><a href="#Main类" class="headerlink" title="Main类"></a>Main类</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io.netty.bootstrap.ServerBootstrap;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.*;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.group.ChannelGroup;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.group.DefaultChannelGroup;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.nio.NioEventLoop;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.nio.NioEventLoopGroup;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.socket.SocketChannel;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.socket.nio.NioServerSocketChannel;</span><br><span class="line"><span class="keyword">import</span> io.netty.handler.codec.http.HttpObjectAggregator;</span><br><span class="line"><span class="keyword">import</span> io.netty.handler.codec.http.HttpServerCodec;</span><br><span class="line"><span class="keyword">import</span> io.netty.handler.codec.http.websocketx.TextWebSocketFrame;</span><br><span class="line"><span class="keyword">import</span> io.netty.handler.codec.http.websocketx.WebSocketServerProtocolHandler;</span><br><span class="line"><span class="keyword">import</span> io.netty.handler.stream.ChunkedWriteHandler;</span><br><span class="line"><span class="keyword">import</span> io.netty.util.concurrent.GlobalEventExecutor;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line"></span><br><span class="line">        EventLoopGroup mainGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line">        EventLoopGroup subGroup = <span class="keyword">new</span> NioEventLoopGroup();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ServerBootstrap server = <span class="keyword">new</span> ServerBootstrap();</span><br><span class="line"></span><br><span class="line">            server.group(mainGroup, subGroup)</span><br><span class="line">                    .channel(NioServerSocketChannel.class)</span><br><span class="line">                    .childHandler(<span class="keyword">new</span> ChannelInitializer&lt;SocketChannel&gt;() &#123;</span><br><span class="line"></span><br><span class="line">                        <span class="meta">@Override</span></span><br><span class="line">                        <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">initChannel</span><span class="params">(SocketChannel ch)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">                            ChannelPipeline pipeline = ch.pipeline();</span><br><span class="line"></span><br><span class="line">                            <span class="comment">// WebSocket基于http协议，所以要有http编解码器</span></span><br><span class="line">                            pipeline.addLast(<span class="keyword">new</span> HttpServerCodec());</span><br><span class="line"></span><br><span class="line">                            <span class="comment">// 对写大数据流的支持</span></span><br><span class="line">                            pipeline.addLast(<span class="keyword">new</span> ChunkedWriteHandler());</span><br><span class="line"></span><br><span class="line">                            <span class="comment">// 对HttpMessage进行聚合，聚合成FullHttpRequest或者FullHttpResponse</span></span><br><span class="line">                            <span class="comment">// 几乎所有的Netty编程中都会用到这个Handler</span></span><br><span class="line">                            pipeline.addLast(<span class="keyword">new</span> HttpObjectAggregator(<span class="number">1024</span>*<span class="number">64</span>));</span><br><span class="line"></span><br><span class="line">                            <span class="comment">// websocket 服务器处理协议，用于给指定客户端连接访问的路由为 "/ws"</span></span><br><span class="line">                            <span class="comment">// 本handler会处理一些繁重的复杂的事</span></span><br><span class="line">                            <span class="comment">// 会处理握手动作，handshaking</span></span><br><span class="line">                            <span class="comment">// 对于websocket来讲，都是以frames进行传输，不同类型对应frames也不同</span></span><br><span class="line">                            pipeline.addLast(<span class="keyword">new</span> WebSocketServerProtocolHandler(<span class="string">"/ws"</span>));</span><br><span class="line"></span><br><span class="line">                            <span class="comment">// 自定义Handler,处理消息的handler</span></span><br><span class="line">                            <span class="comment">// 在netty中TextWebSocketFrame是用于为websocket专门处理文本对象，frame是消息的载体</span></span><br><span class="line">                            pipeline.addLast(<span class="keyword">new</span> ChatHandler());</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            ChannelFuture future = server.bind(<span class="number">8012</span>).sync();</span><br><span class="line">            future.channel().closeFuture().sync();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            mainGroup.shutdownGracefully();</span><br><span class="line">            subGroup.shutdownGracefully();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h6 id="ChatHandler类"><a href="#ChatHandler类" class="headerlink" title="ChatHandler类"></a>ChatHandler类</h6><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> io.netty.channel.Channel;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.ChannelHandlerContext;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.SimpleChannelInboundHandler;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.group.ChannelGroup;</span><br><span class="line"><span class="keyword">import</span> io.netty.channel.group.DefaultChannelGroup;</span><br><span class="line"><span class="keyword">import</span> io.netty.handler.codec.http.websocketx.TextWebSocketFrame;</span><br><span class="line"><span class="keyword">import</span> io.netty.util.concurrent.GlobalEventExecutor;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 自定义Handler,处理消息的handler</span></span><br><span class="line"><span class="comment"> * 在netty中TextWebSocketFrame是用于为websocket专门处理文本对象，frame是消息的载体</span></span><br><span class="line"><span class="comment"> * */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChatHandler</span> <span class="keyword">extends</span> <span class="title">SimpleChannelInboundHandler</span>&lt;<span class="title">TextWebSocketFrame</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> ChannelGroup clients = <span class="keyword">new</span> DefaultChannelGroup(GlobalEventExecutor.INSTANCE);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">channelRead0</span><span class="params">(ChannelHandlerContext ctx, TextWebSocketFrame msg)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 获取客户端传输的消息</span></span><br><span class="line">        String content = msg.text();</span><br><span class="line"></span><br><span class="line">        System.out.println(content);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 给每个客户端发送</span></span><br><span class="line">        <span class="keyword">for</span> (Channel channel: clients) &#123;</span><br><span class="line">            channel.writeAndFlush(<span class="keyword">new</span> TextWebSocketFrame(<span class="string">"服务器接收到消息: "</span> + content));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 当客户端连接服务端后（打开链接）</span></span><br><span class="line"><span class="comment">     * 获取客户端的channel，并且放入ChannelGroup进行管理</span></span><br><span class="line"><span class="comment">     * */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handlerAdded</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        clients.add(ctx.channel());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handlerRemoved</span><span class="params">(ChannelHandlerContext ctx)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 当触发handlerRemoved，ChannelGroup会自动移除对应客户端的channel</span></span><br><span class="line">        clients.remove(ctx.channel());</span><br><span class="line">        System.out.println(ctx.channel().id().asLongText());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">简介</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#应用"><span class="toc-number">2.</span> <span class="toc-text">应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在了解Netty之前，需要对一些概念有所了解"><span class="toc-number"></span> <span class="toc-text">在了解Netty之前，需要对一些概念有所了解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Selector"><span class="toc-number">1.</span> <span class="toc-text">Selector</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Buffer"><span class="toc-number">2.</span> <span class="toc-text">Buffer</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Reactor"><span class="toc-number">3.</span> <span class="toc-text">Reactor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Handler"><span class="toc-number">4.</span> <span class="toc-text">Handler</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Netty入门"><span class="toc-number"></span> <span class="toc-text">Netty入门</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Bootstrap-ServerBootstrap"><span class="toc-number">0.1.</span> <span class="toc-text">Bootstrap ServerBootstrap</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Future-ChannelFuture"><span class="toc-number">0.2.</span> <span class="toc-text">Future ChannelFuture</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Channel"><span class="toc-number">0.3.</span> <span class="toc-text">Channel</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Selector-1"><span class="toc-number">0.4.</span> <span class="toc-text">Selector</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NioEventLoop"><span class="toc-number">0.5.</span> <span class="toc-text">NioEventLoop</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#NioEventLoopGroup"><span class="toc-number">0.6.</span> <span class="toc-text">NioEventLoopGroup</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ChannelHandler"><span class="toc-number">0.7.</span> <span class="toc-text">ChannelHandler</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ChannelHandlerContext"><span class="toc-number">0.8.</span> <span class="toc-text">ChannelHandlerContext</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ChannelPipline"><span class="toc-number">0.9.</span> <span class="toc-text">ChannelPipline</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#入门实战"><span class="toc-number">1.</span> <span class="toc-text">入门实战</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Server类"><span class="toc-number">1.0.1.</span> <span class="toc-text">Server类</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ServerInit类"><span class="toc-number">1.0.2.</span> <span class="toc-text">ServerInit类</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#CustomHandler类"><span class="toc-number">1.0.3.</span> <span class="toc-text">CustomHandler类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#创建一个WebSocket服务器"><span class="toc-number">2.</span> <span class="toc-text">创建一个WebSocket服务器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#Main类"><span class="toc-number">2.0.1.</span> <span class="toc-text">Main类</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ChatHandler类"><span class="toc-number">2.0.2.</span> <span class="toc-text">ChatHandler类</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&text=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&is_video=false&description=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Netty从入门到瞎搞&body=Check out this article: http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/" target="_blank" rel="noopener"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&title=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&name=Netty从入门到瞎搞&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2019/11/19/Netty%E4%BB%8E%E5%85%A5%E9%97%A8%E5%88%B0%E7%9E%8E%E6%90%9E/&t=Netty从入门到瞎搞" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 ECIN520
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
 </body>
 </html>

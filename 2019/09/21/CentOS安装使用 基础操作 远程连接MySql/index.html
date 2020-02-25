@@ -1,33 +1,311 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang=en>
 <head>
-<meta charset="utf-8">
-<title>CentOS安装使用，远程连接MySql - ECIN&#39;S BLOG</title>
-<base href="/">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
-<link rel="canonical" href="http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/">
-<link rel="icon" type="image/x-icon" href="/favicon.ico">
-<meta name="description" content="安装获取mysql的rpm yum包 1wget http:&#x2F;&#x2F;dev.mysql.com&#x2F;get&#x2F;mysql-community-release-el7-5.noarch.rpm  安装rpm 1rpm -ivh mysql-community-release-el7-5.noarch.rpm  安装 1yum install mysql-community-server  启动 1servic">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="安装获取mysql的rpm yum包 1wget http:&#x2F;&#x2F;dev.mysql.com&#x2F;get&#x2F;mysql-community-release-el7-5.noarch.rpm  安装rpm 1rpm -ivh mysql-community-release-el7-5.noarch.rpm  安装 1yum install mysql-community-server  启动 1servic">
 <meta name="keywords" content="MySql,原创">
-<meta property="og:type" content="website">
+<meta property="og:type" content="article">
 <meta property="og:title" content="CentOS安装使用，远程连接MySql">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;09&#x2F;21&#x2F;CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql&#x2F;index.html">
 <meta property="og:site_name" content="ECIN&#39;S BLOG">
 <meta property="og:description" content="安装获取mysql的rpm yum包 1wget http:&#x2F;&#x2F;dev.mysql.com&#x2F;get&#x2F;mysql-community-release-el7-5.noarch.rpm  安装rpm 1rpm -ivh mysql-community-release-el7-5.noarch.rpm  安装 1yum install mysql-community-server  启动 1servic">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http:&#x2F;&#x2F;148.70.50.70&#x2F;source&#x2F;1572837893695.jpg">
 <meta property="og:updated_time" content="2019-11-08T07:17:52.580Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http:&#x2F;&#x2F;148.70.50.70&#x2F;source&#x2F;1572837893695.jpg">
-<link href="//fonts.googleapis.com/css?family=Baloo+Bhaijaan|Inconsolata|Josefin+Sans|Montserrat" rel="stylesheet">
-<link href="/styles.d1f4718a192abf1f2afd.css" rel="stylesheet">
-<link rel="stylesheet" href="/theme.15ed8a84bc5b1648ee02.css">
-<script src="/config.ef6b22af410138abcfaf.js"></script>
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>CentOS安装使用，远程连接MySql</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
 </head>
-<body lang="en">
-<is-a></is-a>
-<script src="/runtime.caef73fae70e33459c5a.js"></script>
-<script src="/polyfills.28555e618578fe61f50a.js"></script>
-<script src="/main.a6ef31dc523c76e5118c.js"></script>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2019/09/21/centOS%E5%AE%89%E8%A3%85%E6%93%8D%E4%BD%9CDocker/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2019/09/21/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/" target="_blank" rel="noopener"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&text=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&is_video=false&description=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CentOS安装使用，远程连接MySql&body=Check out this article: http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/" target="_blank" rel="noopener"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&name=CentOS安装使用，远程连接MySql&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&t=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始配置"><span class="toc-number">2.</span> <span class="toc-text">初始配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#彻底卸载Mysql"><span class="toc-number">2.1.</span> <span class="toc-text">彻底卸载Mysql</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mysql忘记密码"><span class="toc-number">2.2.</span> <span class="toc-text">mysql忘记密码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#修改my-cnf文件，一般在-etc目录下，在此配置文件中添加一行代码。skip-grant-tables，意思为忽略登陆密码。"><span class="toc-number">2.2.1.</span> <span class="toc-text">修改my.cnf文件，一般在/etc目录下，在此配置文件中添加一行代码。skip-grant-tables，意思为忽略登陆密码。</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CentOS安装使用，远程连接MySql
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">ECIN'S BLOG</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-09-20T19:17:32.000Z" itemprop="datePublished">2019-09-21</time>
+        
+      
+    </div>
+
+
+      
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/MySql/" rel="tag">MySql</a>, <a class="tag-link" href="/tags/%E5%8E%9F%E5%88%9B/" rel="tag">原创</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><p>获取mysql的rpm yum包</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>安装rpm</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rpm -ivh mysql-community-release-el7-5.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>安装</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install mysql-community-server</span><br></pre></td></tr></table></figure>
+
+<p>启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld start</span><br></pre></td></tr></table></figure>
+
+<p>查看是否运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service mysqld status</span><br></pre></td></tr></table></figure>
+
+<h4 id="初始配置"><a href="#初始配置" class="headerlink" title="初始配置"></a>初始配置</h4><p>进入mysql控制台，输入密码时直接回车。或者进入/var/log/mysqld.log查看密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p mysql</span><br></pre></td></tr></table></figure>
+
+<p>修改密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update user set password=PASSWORD(&apos;qwer1234&apos;) where user=&apos;root&apos;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.  grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;qwer1234&apos; with grant option;  </span><br><span class="line">//root 是用户名，% 表示任意主机，&apos;123456&apos; 指定的登录密码</span><br><span class="line">（这个和本地的root密码可以设置不同，互不影响）  </span><br><span class="line">2.  flush privileges; //重载系统权限  </span><br><span class="line">3.  exit;//退出mysql控制台</span><br></pre></td></tr></table></figure>
+
+<p>开放3306端口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">iptables -I INPUT -p tcp -m state --state NEW -m tcp --dport 3306 -j ACCEPT</span><br></pre></td></tr></table></figure>
+
+<h5 id="彻底卸载Mysql"><a href="#彻底卸载Mysql" class="headerlink" title="彻底卸载Mysql"></a>彻底卸载Mysql</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">1.查看mysql的安装情况</span><br><span class="line">       rpm -qa|grep -i mysql</span><br><span class="line">       </span><br><span class="line">2.停止mysql服务，删除mysql</span><br><span class="line">       rpm -ev mysql-5.1.73-8.el6_8.x86_64</span><br><span class="line">       rpm -ev mysql-libs-5.1.73-8.el6_8.x86_64</span><br><span class="line">注意：可能会抛依赖错误错 error:Failed dependencies:</span><br><span class="line">，则加上 --nodeps不检查依赖关系删除，命令如下</span><br><span class="line">rpm -e --nodeps mysql-libs-5.1.73-8.el6_8.x86_64</span><br><span class="line"></span><br><span class="line">3.删除遗留的mysql文件和依赖库</span><br><span class="line">find / -name mysql</span><br><span class="line">rm -rf /var/lib/mysql</span><br><span class="line"></span><br><span class="line">4.mysql 配置文件还要手动删除</span><br><span class="line">rm -rf /etc/my.cnf</span><br><span class="line"></span><br><span class="line">5.检查一遍mysql 是否成功删除</span><br><span class="line">rpm -qa|grep -i mysql</span><br></pre></td></tr></table></figure>
+
+<h5 id="mysql忘记密码"><a href="#mysql忘记密码" class="headerlink" title="mysql忘记密码"></a>mysql忘记密码</h5><h6 id="修改my-cnf文件，一般在-etc目录下，在此配置文件中添加一行代码。skip-grant-tables，意思为忽略登陆密码。"><a href="#修改my-cnf文件，一般在-etc目录下，在此配置文件中添加一行代码。skip-grant-tables，意思为忽略登陆密码。" class="headerlink" title="修改my.cnf文件，一般在/etc目录下，在此配置文件中添加一行代码。skip-grant-tables，意思为忽略登陆密码。"></a>修改my.cnf文件，一般在/etc目录下，在此配置文件中添加一行代码。skip-grant-tables，意思为忽略登陆密码。</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"># For advice on how to change settings please see</span><br><span class="line"># http://dev.mysql.com/doc/refman/5.6/en/server-configuration-defaults.html</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">#</span><br><span class="line"># Remove leading # and set to the amount of RAM for the most important data</span><br><span class="line"># cache in MySQL. Start at 70% of total RAM for dedicated server, else 10%.</span><br><span class="line"># innodb_buffer_pool_size = 128M</span><br><span class="line">#</span><br><span class="line"># Remove leading # to turn on a very important data integrity option: logging</span><br><span class="line"># changes to the binary log between backups.</span><br><span class="line"># log_bin</span><br><span class="line">#</span><br><span class="line"># Remove leading # to set options mainly useful for reporting servers.</span><br><span class="line"># The server defaults are faster for transactions and fast SELECTs.</span><br><span class="line"># Adjust sizes as needed, experiment to find the optimal values.</span><br><span class="line"># join_buffer_size = 128M</span><br><span class="line"># sort_buffer_size = 2M</span><br><span class="line"># read_rnd_buffer_size = 2M</span><br><span class="line">datadir=/var/lib/mysql</span><br><span class="line">socket=/var/lib/mysql/mysql.sock</span><br><span class="line"></span><br><span class="line"># 添加这行代码</span><br><span class="line">skip-grant-tables</span><br><span class="line"></span><br><span class="line"># Disabling symbolic-links is recommended to prevent assorted security risks</span><br><span class="line">symbolic-links=0</span><br><span class="line"></span><br><span class="line"># Recommended in standard MySQL setup</span><br><span class="line">sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES </span><br><span class="line"></span><br><span class="line">[mysqld_safe]</span><br><span class="line">log-error=/var/log/mysqld.log</span><br><span class="line">pid-file=/var/run/mysqld/mysqld.pid</span><br><span class="line">max_allowed_packet = 50M</span><br><span class="line"></span><br><span class="line">[client]</span><br><span class="line">default-character-set = utf8mb4</span><br><span class="line"></span><br><span class="line">[mysql]</span><br><span class="line">default-character-set = utf8mb4</span><br><span class="line"></span><br><span class="line">[mysqld]</span><br><span class="line">character-set-client-handshake = FALSE</span><br><span class="line">character_set_server = utf8mb4</span><br><span class="line">collation-server = utf8mb4_unicode_ci</span><br><span class="line">init_connect=&apos;SET NAMES utf8mb4&apos;</span><br></pre></td></tr></table></figure>
+
+<p>重启mysql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_3_centos etc]<span class="comment"># systemctl restart mysqld.service</span></span><br></pre></td></tr></table></figure>
+
+<p>进入myql</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@VM_0_3_centos etc]<span class="comment"># mysql</span></span><br></pre></td></tr></table></figure>
+
+<p>在mysql中，修改root密码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; use mysql;</span><br><span class="line">mysql&gt; update mysql.user set authentication_string=password(&apos;password&apos;) where user=&apos;root&apos;;</span><br></pre></td></tr></table></figure>
+
+<p>flush一下，然后退出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; flush privileges;</span><br><span class="line">mysql&gt; quit;</span><br></pre></td></tr></table></figure>
+
+<p>最后一定要改回配置（删除skip-grant-tables），然后重启。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#初始配置"><span class="toc-number">2.</span> <span class="toc-text">初始配置</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#彻底卸载Mysql"><span class="toc-number">2.1.</span> <span class="toc-text">彻底卸载Mysql</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#mysql忘记密码"><span class="toc-number">2.2.</span> <span class="toc-text">mysql忘记密码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#修改my-cnf文件，一般在-etc目录下，在此配置文件中添加一行代码。skip-grant-tables，意思为忽略登陆密码。"><span class="toc-number">2.2.1.</span> <span class="toc-text">修改my.cnf文件，一般在/etc目录下，在此配置文件中添加一行代码。skip-grant-tables，意思为忽略登陆密码。</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/" target="_blank" rel="noopener"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&text=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&is_video=false&description=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CentOS安装使用，远程连接MySql&body=Check out this article: http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/" target="_blank" rel="noopener"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&title=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&name=CentOS安装使用，远程连接MySql&description=" target="_blank" rel="noopener"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://news.ycombinator.com/submitlink?u=http://yoursite.com/2019/09/21/CentOS%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8%20%E5%9F%BA%E7%A1%80%E6%93%8D%E4%BD%9C%20%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5MySql/&t=CentOS安装使用，远程连接MySql" target="_blank" rel="noopener"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 ECIN520
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<!-- clipboard -->
+
+  <script src="/lib/clipboard/clipboard.min.js"></script>
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
 </body>
 </html>
